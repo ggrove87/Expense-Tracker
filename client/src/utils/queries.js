@@ -33,10 +33,10 @@ export const QUERY_SINGLE_THOUGHT = gql`
       thoughtText
       thoughtAuthor
       createdAt
-      comments {
+      expenses {
         _id
-        commentText
-        commentAuthor
+        expenseText
+        expenseAuthor
         createdAt
       }
     }

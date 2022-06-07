@@ -4,10 +4,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import CommentList from '../components/CommentList';
-import CommentForm from '../components/CommentForm';
+import ExpenseList from '../components/ExpenseList';
+import ExpenseForm from '../components/ExpenseForm';
 
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+import ExpenseList from '../components/ExpenseList';
 
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -46,10 +47,10 @@ const SingleThought = () => {
       </div>
 
       <div className="my-5">
-        <CommentList comments={thought.comments} />
+        <ExpenseList expenses={thought.expenses} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm thoughtId={thought._id} />
+        <ExpenseForm thoughtId={thought._id} />
       </div>
     </div>
   );

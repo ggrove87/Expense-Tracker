@@ -64,13 +64,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    addExpense: async (parent, { thoughtId, expenseText }, context) => {
       if (context.user) {
         return Thought.findOneAndUpdate(
           { _id: thoughtId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              expenses: { expenseText, expenseAuthor: context.user.username },
             },
           },
           {
@@ -97,15 +97,15 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    removeExpense: async (parent, { thoughtId, expenseId }, context) => {
       if (context.user) {
         return Thought.findOneAndUpdate(
           { _id: thoughtId },
           {
             $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
+              expenses: {
+                _id: expenseId,
+                expenseAuthor: context.user.username,
               },
             },
           },
