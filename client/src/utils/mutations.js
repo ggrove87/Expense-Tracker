@@ -31,24 +31,24 @@ export const ADD_THOUGHT = gql`
       thoughtText
       thoughtAuthor
       createdAt
-      comments {
+      expenses {
         _id
-        commentText
+        expenseText
       }
     }
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+export const ADD_EXPENSE = gql`
+  mutation addExpense($thoughtId: ID!, $expenseText: String!) {
+    addExpense(thoughtId: $thoughtId, expenseText: $expenseText) {
       _id
       thoughtText
       thoughtAuthor
       createdAt
-      comments {
+      expenses {
         _id
-        commentText
+        expenseText
         createdAt
       }
     }

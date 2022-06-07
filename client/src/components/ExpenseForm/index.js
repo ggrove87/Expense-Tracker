@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_EXPENSE } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const CommentForm = ({ thoughtId }) => {
-  const [commentText, setCommentText] = useState('');
+const ExpenseForm = ({ thoughtId }) => {
+  const [expenseText, setExpenseText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addExpense, { error }] = useMutation(ADD_EXPENSE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment({
+      const { data } = await addExpense({
         variables: {
           thoughtId,
-          commentText,
-          commentAuthor: Auth.getProfile().data.username,
+          expenseText,
+          expenseAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setCommentText('');
+      setExpenseText('');
     } catch (err) {
       console.error(err);
     }
@@ -33,8 +33,8 @@ const CommentForm = ({ thoughtId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
-      setCommentText(value);
+    if (name === 'expenseText' && value.length <= 280) {
+      setExpenseText(value);
       setCharacterCount(value.length);
     }
   };
@@ -59,9 +59,9 @@ const CommentForm = ({ thoughtId }) => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="commentText"
-                placeholder="Add your comment..."
-                value={commentText}
+                name="expenseText"
+                placeholder="Add your expense..."
+                value={expenseText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -70,7 +70,7 @@ const CommentForm = ({ thoughtId }) => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
+                Add Expense
               </button>
             </div>
           </form>
@@ -85,4 +85,4 @@ const CommentForm = ({ thoughtId }) => {
   );
 };
 
-export default CommentForm;
+export default ExpenseForm;

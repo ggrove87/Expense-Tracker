@@ -31,6 +31,6 @@
   ## <h2 id="tests"> Tests </h2>
     N/A
   # <h2 id="contact">Contact</h2>
-    Link to my GitHub: ggrove87
+    Link to my GitHub: https://github.com/ggrove87
     Direct email: gwg1387@gmail.com
   

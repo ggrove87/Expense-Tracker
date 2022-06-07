@@ -19,15 +19,15 @@ const thoughtSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  comments: [
+  expenses: [
     {
-      commentText: {
+      expenseText: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
       },
-      commentAuthor: {
+      expenseAuthor: {
         type: String,
         required: true,
       },
