@@ -11,11 +11,6 @@ const projectSchema = new Schema({
     maxlength: 30,
     trim: true,
   },
-  projectAuthor: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -29,8 +24,12 @@ const projectSchema = new Schema({
         minlength: 1,
         maxlength: 280,
       },
-      expenseAuthor: {
-        type: String,
+      expenseCount: {
+        type: Number,
+        required: true,
+      },
+      expensePrice: {
+        type: Number,
         required: true,
       },
       createdAt: {

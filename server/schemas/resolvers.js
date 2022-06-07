@@ -1,25 +1,25 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Project } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('projects');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('projects');
     },
-    thoughts: async (parent, { username }) => {
+    projects: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return Project.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    project: async (parent, { projectId }) => {
+      return Project.findOne({ _id: projectId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('projects');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -48,29 +48,28 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    addProject: async (parent, { projectTitle }, context) => {
       if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
+        const project = await Project.create({
+          projectTitle,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { projects: project._id } }
         );
 
-        return thought;
+        return project;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addExpense: async (parent, { thoughtId, expenseText }, context) => {
+    addExpense: async (parent, { projectId, expenseText, expenseCount, expensePrice }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Project.findOneAndUpdate(
+          { _id: projectId },
           {
             $addToSet: {
-              expenses: { expenseText, expenseAuthor: context.user.username },
+              expenses: { expenseText, expenseCount, expensePrice },
             },
           },
           {
@@ -81,31 +80,30 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeThought: async (parent, { thoughtId }, context) => {
+    removeProject: async (parent, { projectId }, context) => {
       if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const project = await Project.findOneAndDelete({
+          _id: projectId,
+          projectAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { projects: project._id } }
         );
 
-        return thought;
+        return project;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeExpense: async (parent, { thoughtId, expenseId }, context) => {
+    removeExpense: async (parent, { projectId, expenseId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Project.findOneAndUpdate(
+          { _id: projectId },
           {
             $pull: {
               expenses: {
                 _id: expenseId,
-                expenseAuthor: context.user.username,
               },
             },
           },
