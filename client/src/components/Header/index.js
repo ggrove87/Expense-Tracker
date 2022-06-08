@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-import Auth from '../../utils/auth';
+import React from "react";
+import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
+import Button from "@mui/material/Button";
 
 const Header = () => {
   const logout = (event) => {
@@ -28,8 +28,8 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
+              <Link to="/login">
+                <Button variant="contained">Login</Button>
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/signup">
                 Signup
