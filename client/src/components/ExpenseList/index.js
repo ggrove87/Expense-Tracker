@@ -19,12 +19,10 @@ const ExpenseList = ({ expenses = [] }) => {
             <div key={expense._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-                  {expense.expenseAuthor} expenseed{' '}
-                  <span style={{ fontSize: '0.825rem' }}>
-                    on {expense.createdAt}
-                  </span>
+                {expense.expenseText}
                 </h5>
-                <p className="card-body">{expense.expenseText}</p>
+                <p className="card-body">{expense.expenseCount}</p>
+                <p className="card-body">{expense.expensePrice}</p>
               </div>
             </div>
           ))}

@@ -1,46 +1,52 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+ query Query($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    projects {
       _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-      }
-    }
-  }
-`;
-
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
+      projectTitle
       createdAt
     }
   }
+}
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_PROJECTS = gql`
+  query Query($username: String) {
+  projects(username: $username) {
+    _id
+    projectTitle
+    createdAt
+    expenses {
       _id
-      thoughtText
-      thoughtAuthor
+      expenseText
+      expenseCount
+      expensePrice
       createdAt
-      expenses {
-        _id
-        expenseText
-        expenseAuthor
-        createdAt
-      }
     }
   }
+}
+`;
+
+export const QUERY_SINGLE_PROJECT = gql`
+ query Query($projectId: ID!) {
+  project(projectId: $projectId) {
+    _id
+    projectTitle
+    createdAt
+    expenses {
+      _id
+      expenseText
+      expenseCount
+      expensePrice
+      createdAt
+    }
+  }
+}
 `;
 
 export const QUERY_ME = gql`
@@ -49,10 +55,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      thoughts {
+      projects {
         _id
-        thoughtText
-        thoughtAuthor
+        projectText
+        projectAuthor
         createdAt
       }
     }
