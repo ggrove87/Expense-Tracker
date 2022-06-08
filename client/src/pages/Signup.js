@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
@@ -26,6 +34,7 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+    console.log('triggered')
 
     try {
       const { data } = await addUser({
@@ -37,6 +46,49 @@ const Signup = () => {
       console.error(e);
     }
   };
+
+  return (
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <Card align="center" sx={{ border: 1, maxWidth: 275, mx: 'auto', mt: '2rem' }}>
+          <CardContent>
+            <Typography color="text.secondary" variant="h5" gutterBottom>Create an account:</Typography>
+
+            <Box
+
+              sx={{
+                '& > :not(style)': { m: 1, width: '25ch' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField id="outlined-basic" label="username" variant="outlined"
+                name="username"
+                type="text"
+                value={formState.name}
+                onChange={handleChange} />
+              <TextField id="outlined-basic" label="email" variant="outlined"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange} />
+              <TextField id="outlined-basic" label="password" variant="outlined"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange} />
+            </Box>
+
+          </CardContent>
+
+          <CardActions style={{ justifyContent: 'center' }}>
+            <Button size="small" style={{ cursor: 'pointer' }} sx={{ mb: '1rem' }} type="submit" variant="outlined">Submit</Button>
+          </CardActions>
+
+        </Card>
+      </form>
+    </>
+  );
 
   return (
     <main className="flex-row justify-center mb-4">
