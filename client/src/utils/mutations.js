@@ -43,7 +43,7 @@ export const ADD_PROJECT = gql`
 
 export const ADD_EXPENSE = gql`
   mutation addExpense($projectId: ID!, $expenseText: String!, $expenseCount: Int!, $expensePrice: Int!) {
-    addExpense(projectId: $projectId, expenseText: $expenseText, expenseCount: $expenseCount, expensePrice: $) {
+    addExpense(projectId: $projectId, expenseText: $expenseText, expenseCount: $expenseCount, expensePrice: $expensePrice) {
       _id
       projectTitle
       createdAt
