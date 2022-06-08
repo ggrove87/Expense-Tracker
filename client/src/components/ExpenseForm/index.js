@@ -6,9 +6,11 @@ import { ADD_EXPENSE } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const ExpenseForm = ({ thoughtId }) => {
+const ExpenseForm = ({ projectId }) => {
   const [expenseText, setExpenseText] = useState('');
-  const [characterCount, setCharacterCount] = useState(0);
+  const [expenseCount, setExpenseCount] = useState('');
+  const [expensePrice, setExpensePrice] = useState('');
+
 
   const [addExpense, { error }] = useMutation(ADD_EXPENSE);
 
@@ -18,13 +20,16 @@ const ExpenseForm = ({ thoughtId }) => {
     try {
       const { data } = await addExpense({
         variables: {
-          thoughtId,
+          projectId,
           expenseText,
-          expenseAuthor: Auth.getProfile().data.username,
+          expenseCount,
+          expensePrice
         },
       });
 
       setExpenseText('');
+      setExpenseCount(0)
+      setExpensePrice(0.00)
     } catch (err) {
       console.error(err);
     }
@@ -33,26 +38,24 @@ const ExpenseForm = ({ thoughtId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'expenseText' && value.length <= 280) {
-      setExpenseText(value);
-      setCharacterCount(value.length);
+    if (name === 'expenseText') {
+      setExpenseText(value);  
+    }
+    if (name === 'expenseCount') {
+      setExpenseText(value);  
+    }
+    if (name === 'expensePrice') {
+      setExpenseText(value); 
     }
   };
 
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
+      <h4>What are your expenses on this project?</h4>
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/280
-            {error && <span className="ml-2">{error.message}</span>}
-          </p>
+          
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -66,6 +69,22 @@ const ExpenseForm = ({ thoughtId }) => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
+              <input type="number"
+                name="expenseCount"
+                placeholder="How many units are you purchasing?"
+                value={expenseCount}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleChange}
+              ></input>
+              <input type="number"
+                name="expensePrice"
+                placeholder="How much does each unit cost?"
+                value={expensePrice}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleChange}
+              ></input>
             </div>
 
             <div className="col-12 col-lg-3">
@@ -77,7 +96,7 @@ const ExpenseForm = ({ thoughtId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to register your expenses for a project. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

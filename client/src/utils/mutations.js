@@ -24,31 +24,34 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_PROJECT = gql`
+  mutation addProject($projectTitle: String!) {
+  addProject(projectTitle: $projectTitle) {
+    _id
+    projectTitle
+    createdAt
+    expenses {
       _id
-      thoughtText
-      thoughtAuthor
+      expenseText
+      expenseCount
+      expensePrice
       createdAt
-      expenses {
-        _id
-        expenseText
-      }
     }
   }
+}
 `;
 
 export const ADD_EXPENSE = gql`
-  mutation addExpense($thoughtId: ID!, $expenseText: String!) {
-    addExpense(thoughtId: $thoughtId, expenseText: $expenseText) {
+  mutation addExpense($projectId: ID!, $expenseText: String!, $expenseCount: Int!, $expensePrice: Int!) {
+    addExpense(projectId: $projectId, expenseText: $expenseText, expenseCount: $expenseCount, expensePrice: $expensePrice) {
       _id
-      thoughtText
-      thoughtAuthor
+      projectTitle
       createdAt
       expenses {
         _id
         expenseText
+        expenseCount
+        expensePrice
         createdAt
       }
     }

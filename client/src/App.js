@@ -52,7 +52,7 @@ function App() {
                 path="/"
                 element={<Home />}
               />
-              <Route 
+             <Route 
                 path="/login" 
                 element={<Login />}
               />
@@ -70,7 +70,7 @@ function App() {
               />
               <Route 
                 path="/thoughts/:thoughtId" 
-                element={<SingleThought />}
+                element={<SingleThought />} 
               />
             </Routes>
           </div>
