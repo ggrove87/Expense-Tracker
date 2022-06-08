@@ -7,7 +7,11 @@ import { useQuery } from '@apollo/client';
 import ExpenseList from '../components/ExpenseList';
 import ExpenseForm from '../components/ExpenseForm';
 
+<<<<<<< HEAD
 import { QUERY_SINGLE_PROJECT } from '../utils/queries';
+=======
+import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+>>>>>>> ced7ecb895aba5862b584ff0d4fd998287de6f54
 
 
 const SingleProject = () => {
