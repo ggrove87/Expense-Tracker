@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const Header = () => {
@@ -9,36 +13,35 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Expense Tracker</h1>
-          </Link>
-        </div>
-        <div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Expense Tracker
+          </Typography>
+
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                Profile
+              <Link to="/me">
+                <Button color="inherit" variant="contained">Profile</Button>
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <Button color="inherit" variant="contained" onClick={logout}>
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
             <>
               <Link to="/login">
-                <Button variant="contained">Login</Button>
+                <Button color="inherit" variant="contained">Login</Button>
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
+              <Link to="/signup">
+                <Button color="inherit" variant="contained">Signup</Button>
               </Link>
             </>
           )}
-        </div>
-      </div>
-    </header>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 
