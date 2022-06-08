@@ -57,8 +57,7 @@ export const QUERY_ME = gql`
       email
       projects {
         _id
-        projectText
-        projectAuthor
+        projectTitle
         createdAt
       }
     }

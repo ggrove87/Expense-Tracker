@@ -8,7 +8,7 @@ import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ProjectForm = () => {
-  const [projectText, setProjectText] = useState('');
+  const [projectTitle, setProjectTitle] = useState('');
 
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
@@ -39,12 +39,12 @@ const ProjectForm = () => {
     try {
       const { data } = await addProject({
         variables: {
-          projectText,
-          projectAuthor: Auth.getProfile().data.username,
+          projectTitle,
+          // projectAuthor: Auth.getProfile().data.username,
         },
       });
 
-      setProjectText('');
+      setProjectTitle('');
     } catch (err) {
       console.error(err);
     }
@@ -53,8 +53,8 @@ const ProjectForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'projectText' && value.length <= 280) {
-      setProjectText(value);
+    if (name === 'projectTitle' && value.length <= 280) {
+      setProjectTitle(value);
 
     }
   };
@@ -72,9 +72,9 @@ const ProjectForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="projectText"
+                name="projectTitle"
                 placeholder="Here's a new project..."
-                value={projectText}
+                value={projectTitle}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
