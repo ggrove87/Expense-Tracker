@@ -1,25 +1,20 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container text-center mb-5">
-        {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            onClick={() => navigate(-1)}
-          >
-            &larr; Go Back
-          </button>
-        )}
-        <h4>
-          Developed by Gene, Jason, and Lindy.
-        </h4>
-      </div>
-    </footer>
+    <>
+      {location.pathname !== "/" && (
+        <Button onClick={() => navigate(-1)}>&larr; Go Back</Button>
+      )}
+      <Typography align="center" variant="body2" mt={5}>
+        Developed by Gene, Jason, and Lindy.
+      </Typography>
+    </>
   );
 };
 
