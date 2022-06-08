@@ -8,7 +8,6 @@ import ExpenseList from '../components/ExpenseList';
 import ExpenseForm from '../components/ExpenseForm';
 
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
-import ExpenseList from '../components/ExpenseList';
 
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
