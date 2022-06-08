@@ -42,10 +42,12 @@ const ExpenseForm = ({ projectId }) => {
       setExpenseText(value);  
     }
     if (name === 'expenseCount') {
-      setExpenseText(value);  
+      let intValue = Number(value)
+      setExpenseCount(intValue);  
     }
     if (name === 'expensePrice') {
-      setExpenseText(value); 
+      let intValue = Number(value)
+      setExpensePrice(intValue); 
     }
   };
 
