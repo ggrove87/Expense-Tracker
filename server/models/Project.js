@@ -39,7 +39,13 @@ const projectSchema = new Schema({
       },
     },
   ],
-});
+},
+{
+  toJSON: {
+    virtuals: true,
+  },
+}
+);
 
 const Project = model('Project', projectSchema);
 
