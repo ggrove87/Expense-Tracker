@@ -34,7 +34,6 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
-    console.log('triggered')
 
     try {
       const { data } = await addUser({
