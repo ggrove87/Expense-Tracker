@@ -1,5 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 const ProjectList = ({
   projects,
@@ -8,46 +20,40 @@ const ProjectList = ({
   showUsername = true,
 }) => {
   if (!projects.length) {
-    return <h3>No Projects Yet</h3>;
+    return (
+      <Typography color="text.primary" variant="h5" m={2}>
+        No projects yet
+      </Typography>
+    );
   }
 
   return (
-    <div>
-      {showTitle && <h3>{title}</h3>}
+    <Grid container spacing={2}>
       {projects &&
         projects.map((project) => (
-          <div key={project._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`/me`}
-                >
-                  {project.projectAuthor} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    had this project on {project.createdAt}
-                  </span>
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: '1rem' }}>
-                    You had this project on {project.createdAt}
-                  </span>
-                </>
-              )}
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{project.projectTitle}</p>
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/projects/${project._id}`}
-            >
-              Join the discussion on this project.
-            </Link>
-          </div>
+            <Grid item xs={12} md={6}>
+              <Card
+                align="center"
+                sx={{ border: 1, maxWidth: 343, mx: "auto" }}
+              >
+                <CardContent>
+                  <Typography color="text.primary" variant="h5" m={1}>
+                    {project.projectTitle}
+                  </Typography>
+                  <Typography color="text.secondary" variant="subtitle2" m={2}>
+                    {`You created this project on ${project.createdAt}`}
+                  </Typography>
+                  <Link
+                    className="btn btn-primary btn-block btn-squared"
+                    to={`/projects/${project._id}`}
+                  >
+                    <Button>View project's expenses</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </Grid>
         ))}
-    </div>
+    </Grid>
   );
 };
 
