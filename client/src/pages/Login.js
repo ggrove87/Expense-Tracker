@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
@@ -39,6 +49,40 @@ const Login = (props) => {
       password: '',
     });
   };
+
+  return (
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <Card align="center" sx={{ border: 1, maxWidth: 275, mx: 'auto', mt: '2rem' }}>
+          <CardContent>
+            <Typography color="text.secondary" variant="h5" gutterBottom>Log In: </Typography>
+
+            <Box sx={{ '& > :not(style)': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">
+              <TextField id="outlined-basic" label="email" variant="outlined"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange} />
+              <TextField id="outlined-basic" label="password" variant="outlined"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange} />
+            </Box>
+
+          </CardContent>
+
+          <CardActions style={{ justifyContent: 'center' }}>
+            <Button size="small" style={{ cursor: 'pointer' }} sx={{ mb: '1rem' }} type="submit" variant="outlined">Submit</Button>
+          </CardActions>
+
+        </Card>
+      </form>
+      {error && (
+        <Alert severity="error" align="center" sx={{ border: 1, maxWidth: 275, mx: 'auto', mt: '2rem' }}>{error.message}</Alert>
+      )}
+    </>
+  );
 
   return (
     <main className="flex-row justify-center mb-4">
