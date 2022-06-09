@@ -16,14 +16,15 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Expense Tracker
-          </Typography>
-
           {Auth.loggedIn() ? (
             <>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Link to="/me">Expense Tracker</Link>
+              </Typography>
               <Link to="/me">
-                <Button color="inherit" variant="contained">Profile</Button>
+                <Button color="inherit" variant="contained">
+                  Profile
+                </Button>
               </Link>
               <Button color="inherit" variant="contained" onClick={logout}>
                 Logout
@@ -31,11 +32,18 @@ const Header = () => {
             </>
           ) : (
             <>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Link to="/">Expense Tracker</Link>
+              </Typography>
               <Link to="/login">
-                <Button color="inherit" variant="contained">Login</Button>
+                <Button color="inherit" variant="contained">
+                  Login
+                </Button>
               </Link>
               <Link to="/signup">
-                <Button color="inherit" variant="contained">Signup</Button>
+                <Button color="inherit" variant="contained">
+                  Signup
+                </Button>
               </Link>
             </>
           )}
