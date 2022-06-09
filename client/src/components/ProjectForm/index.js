@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { ADD_PROJECT } from '../../utils/mutations';
-import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
-import Auth from '../../utils/auth';
+import { useMutation } from "@apollo/client";
+
+import { ADD_PROJECT } from "../../utils/mutations";
+import { QUERY_PROJECTS, QUERY_ME } from "../../utils/queries";
+
+import Auth from "../../utils/auth";
 
 const ProjectForm = () => {
-  const [projectTitle, setProjectTitle] = useState('');
-
+  const [projectTitle, setProjectTitle] = useState("");
 
   const [addProject, { error }] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
@@ -44,7 +52,7 @@ const ProjectForm = () => {
         },
       });
 
-      setProjectTitle('');
+      setProjectTitle("");
     } catch (err) {
       console.error(err);
     }
@@ -53,41 +61,58 @@ const ProjectForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'projectTitle' && value.length <= 280) {
+    if (name === "projectTitle" && value.length <= 280) {
       setProjectTitle(value);
-
     }
   };
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
-
       {Auth.loggedIn() ? (
         <>
-          
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="projectTitle"
-                placeholder="Here's a new project..."
-                value={projectTitle}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
+          <form onSubmit={handleFormSubmit}>
+            <Card
+              align="center"
+              sx={{ border: 1, maxWidth: 343, mx: "auto", mt: "1rem" }}
+            >
+              <CardContent>
+                <Typography color="text.secondary" variant="h5" gutterBottom>
+                  Add a new project:
+                </Typography>
+                <Box
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    multiline
+                    label="project title"
+                    variant="outlined"
+                    name="projectTitle"
+                    type="text"
+                    value={projectTitle}
+                    onChange={handleChange}
+                  />
+                </Box>
+              </CardContent>
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button
+                  size="small"
+                  style={{ cursor: "pointer" }}
+                  sx={{ mb: "1rem" }}
+                  type="submit"
+                  variant="outlined"
+                >
+                  Add Project
+                </Button>
+              </CardActions>
+            </Card>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Project
-              </button>
-            </div>
             {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
+              <div>
                 {error.message}
               </div>
             )}
@@ -95,7 +120,7 @@ const ProjectForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your projects. Please{' '}
+          You need to be logged in to share your projects. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

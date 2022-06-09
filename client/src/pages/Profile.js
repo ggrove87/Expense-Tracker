@@ -1,13 +1,16 @@
-import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { Navigate, useParams } from "react-router-dom";
 
-import ProjectForm from '../components/ProjectForm';
-import ProjectList from '../components/ProjectList';
+import Typography from "@mui/material/Typography";
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { useQuery } from "@apollo/client";
 
-import Auth from '../utils/auth';
+import ProjectForm from "../components/ProjectForm";
+import ProjectList from "../components/ProjectList";
+
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
+
+import Auth from "../utils/auth";
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -28,38 +31,27 @@ const Profile = () => {
 
   if (!user?.username) {
     return (
-      <h4>
+      <Typography color="text.primary" variant="h5" m={2}>
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
-      </h4>
+      </Typography>
     );
   }
 
   return (
-    <div>
-      <div className="flex-row justify-center mb-3">
-        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-        </h2>
+    <>
+      <Typography color="text.primary" variant="h5" m={2}>
+        Viewing {userParam ? `${user.username}'s` : "your"} profile.
+      </Typography>
 
-        <div className="col-12 col-md-10 mb-5">
-          <ProjectList
-            projects={user.projects}
-            title={`${user.username}'s projects...`}
-            showTitle={false}
-            showUsername={false}
-          />
-        </div>
-        {!userParam && (
-          <div
-            className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
-            <ProjectForm />
-          </div>
-        )}
-      </div>
-    </div>
+        <ProjectList
+          projects={user.projects}
+          title={`${user.username}'s projects...`}
+          showTitle={false}
+          showUsername={false}
+        />
+      {!userParam && <ProjectForm />}
+    </>
   );
 };
 
