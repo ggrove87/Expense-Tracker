@@ -8,7 +8,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EXPENSE } from '../../utils/mutations';
