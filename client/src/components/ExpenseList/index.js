@@ -22,10 +22,10 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
   return (
     <>
       <Typography color="text.primary" variant="h5" m={2}>
-        {projectTitle} expenses - Current Total: {totalCost}
+        {projectTitle} - Current Total: ${totalCost}
       </Typography>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Item</TableCell>
@@ -44,9 +44,9 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
                   {expense.expenseText}
                 </TableCell>
                 <TableCell align="right">{expense.expenseCount}</TableCell>
-                <TableCell align="right">{expense.expensePrice}</TableCell>
+                <TableCell align="right">${expense.expensePrice}</TableCell>
                 <TableCell align="right">
-                  {expense.expenseCount * expense.expensePrice}
+                  ${expense.expenseCount * expense.expensePrice}
                 </TableCell>
               </TableRow>
             ))}

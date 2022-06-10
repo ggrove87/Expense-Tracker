@@ -71,18 +71,18 @@ const ExpenseForm = ({ projectId }) => {
 
             <Box sx={{ '& > :not(style)': { m: 1, width: '25ch' }, }} noValidate autoComplete="off">
 
-            <TextField id="outlined-basic" label="name of expense..." variant="outlined"
+            <TextField id="outlined-basic" label="item..." variant="outlined"
                 name="expenseText"
                 value={expenseText}
                 onChange={handleChange} />
 
-              <TextField id="outlined-basic" label="# of units purchased..." variant="outlined"
+              <TextField id="outlined-basic" label="unit count..." variant="outlined"
                 name="expenseCount"
                 type="number"
                 value={expenseCount}
                 onChange={handleChange} />
 
-              <TextField id="outlined-basic" label="price per unit..." variant="outlined"
+              <TextField id="outlined-basic" label="unit price..." variant="outlined"
                 name="expensePrice"
                 type="number"
                 value={expensePrice}
@@ -104,60 +104,6 @@ const ExpenseForm = ({ projectId }) => {
         </p>
       )}
     </>
-  ); 
-
-  return (
-    <div>
-      <h4>What are your expenses on this project?</h4>
-
-      {Auth.loggedIn() ? (
-        <>
-          
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="expenseText"
-                placeholder="Add your expense..."
-                value={expenseText}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-              <input type="number"
-                name="expenseCount"
-                placeholder="How many units are you purchasing?"
-                value={expenseCount}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></input>
-              <input type="number"
-                name="expensePrice"
-                placeholder="How much does each unit cost?"
-                value={expensePrice}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></input>
-            </div>
-
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Expense
-              </button>
-            </div>
-          </form>
-        </>
-      ) : (
-        <p>
-          You need to be logged in to register your expenses for a project. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )}
-    </div>
   );
 };
 

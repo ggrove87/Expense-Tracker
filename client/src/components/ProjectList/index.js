@@ -24,8 +24,8 @@ const ProjectList = ({
   return (
     <Grid container spacing={2}>
       {projects &&
-        projects.map((project) => (
-            <Grid item xs={12} md={6}>
+        projects.map((project, index) => (
+            <Grid item xs={12} md={6} key={index}>
               <Card
                 align="center"
                 sx={{ border: 1, maxWidth: 343, mx: "auto" }}
