@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Alert from "@mui/material/Alert";
 
 import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../../utils/mutations";
@@ -72,27 +65,27 @@ const ExpenseForm = ({ projectId }) => {
             name="expenseText"
             value={expenseText}
             onChange={handleChange}
-            sx={{ width: "25%", paddingLeft: "1rem" }}
+            sx={{ height: "3rem", width: "25%", paddingLeft: "1rem" }}
           />
           <Input
-            placeholder="unit count..."
+            placeholder="count..."
             name="expenseCount"
             type="number"
             value={expenseCount}
             onChange={handleChange}
-            sx={{ width: "25%", paddingLeft: "2rem", textAlign: "right" }}
+            sx={{ height: "3rem", width: "25%", paddingLeft: "2rem", textAlign: "right" }}
           />
           <Input
-            placeholder="unit price..."
+            placeholder="price..."
             name="expensePrice"
             type="number"
             value={expensePrice}
             onChange={handleChange}
-            sx={{ width: "25%", paddingLeft: "2rem" }}
+            sx={{ height: "3rem", width: "25%", paddingLeft: "2rem" }}
           />
           <Button
             size="small"
-            style={{ width: "25%", cursor: "pointer" }}
+            style={{ height: "3rem", width: "25%", cursor: "pointer" }}
             type="submit"
             variant="outlined"
           >

@@ -12,7 +12,11 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
   // let [totalCost, setTotalCost] = useState(0);
   let totalCost = 0;
   if (!expenses.length) {
-    return <h3>No Expenses Yet</h3>;
+    return (
+      <Typography color="text.primary" variant="h5" m={2}>
+        No Expenses Yet
+      </Typography>
+    );
   }
 
   for (let i = 0; i < expenses.length; i++) {
@@ -29,9 +33,9 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
           <TableHead>
             <TableRow>
               <TableCell>Item</TableCell>
-              <TableCell align="right">Unit Count</TableCell>
-              <TableCell align="right">Unit Price</TableCell>
-              <TableCell align="right">Total Line Cost</TableCell>
+              <TableCell align="right">Count</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Line Cost</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
