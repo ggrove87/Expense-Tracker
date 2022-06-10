@@ -5,17 +5,18 @@ import Typography from "@mui/material/Typography";
 const styles = {
   position: 'absolute',
   alignText: 'center',
-  margin: '1.2rem',
-  width: '100%'
+  marginTop: '1.2rem',
+  width: '100%',
+  bottom: '1rem'
 }
 
 const Footer = () => {
   return (
-    <>
+    <div >
       <Typography style={styles} align="center" variant="body2" mt={5}>
         Developed by Gene, Jason, and Lindy.
       </Typography>
-    </>
+    </div>
   );
 };
 

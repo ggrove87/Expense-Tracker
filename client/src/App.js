@@ -44,7 +44,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div style={{position: 'relative', minHeight: '100vh'}}>
           <Header />
           <div className="container">
             <Routes>
@@ -55,7 +55,7 @@ function App() {
               <Route path="/projects/:projectId" element={<SingleProject />} />
             </Routes>
           </div>
-          <div style={{position: 'relative'}}><Footer/></div>
+          <Footer/>
           
         </div>
       </Router>
