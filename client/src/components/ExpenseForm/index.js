@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+<<<<<<< HEAD
 import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
 import Box from "@mui/material/Box";
@@ -10,6 +11,15 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
+=======
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+>>>>>>> 5ed5a0904b479091f2210c3b9c82c9ac80e0524f
 
 import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../../utils/mutations";
