@@ -55,7 +55,8 @@ function App() {
               <Route path="/projects/:projectId" element={<SingleProject />} />
             </Routes>
           </div>
-          <Footer/>
+          <div style={{position: 'relative'}}><Footer/></div>
+          
         </div>
       </Router>
     </ApolloProvider>

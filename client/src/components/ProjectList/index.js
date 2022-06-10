@@ -22,30 +22,31 @@ const ProjectList = ({
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid justifyContent="space-around"
+      alignItems="center" container spacing={3}>
       {projects &&
         projects.map((project, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Card
-                align="center"
-                sx={{ border: 1, maxWidth: 343, mx: "auto" }}
-              >
-                <CardContent>
-                  <Typography color="text.primary" variant="h5" m={1}>
-                    {project.projectTitle}
-                  </Typography>
-                  <Typography color="text.secondary" variant="subtitle2" m={2}>
-                    {`You created this project on ${project.createdAt}`}
-                  </Typography>
-                  <Link
-                    className="btn btn-primary btn-block btn-squared"
-                    to={`/projects/${project._id}`}
-                  >
-                    <Button>View project's expenses</Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            </Grid>
+          <Grid item xs={12} md={3} key={index}>
+            <Card
+              align="center"
+              sx={{ border: 1, maxWidth: 343, mx: "auto" }}
+            >
+              <CardContent>
+                <Typography color="text.primary" variant="h5" m={1}>
+                  {project.projectTitle}
+                </Typography>
+                <Typography color="text.secondary" variant="subtitle2" m={2}>
+                  {`You created this project on ${project.createdAt}`}
+                </Typography>
+                <Link
+                  className="btn btn-primary btn-block btn-squared"
+                  to={`/projects/${project._id}`}
+                >
+                  <Button>View project's expenses</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
     </Grid>
   );

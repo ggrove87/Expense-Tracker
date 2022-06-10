@@ -40,8 +40,8 @@ const Profile = () => {
 
   return (
     <>
-      <Typography color="text.primary" variant="h5" m={2}>
-        Viewing {userParam ? `${user.username}'s` : "your"} profile.
+      <Typography align="center" color="text.primary" variant="h5" m={2}>
+        Welcome to your profile page!
       </Typography>
 
         <ProjectList
