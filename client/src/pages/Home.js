@@ -9,7 +9,7 @@ const Home = () => {
         made easy.
       </Typography>
       <div align="center">
-        <iframe title="kevin" src="https://giphy.com/embed/SEWEmCymjv8XDbsb8I" style={{ maxWidth: "400vw", height: 'auto' }} frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        <iframe title="kevin" src="https://giphy.com/embed/SEWEmCymjv8XDbsb8I" style={{ maxWidth: "400vw", height: 'auto' }} frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
       </div>
     </main>
   );
