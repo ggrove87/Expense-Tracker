@@ -25,7 +25,7 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
         {projectTitle} expenses - Current Total: {totalCost}
       </Typography>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Item</TableCell>
