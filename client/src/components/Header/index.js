@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Auth from "../../utils/auth";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,6 +12,9 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+  // navigate functions
+  const location = useLocation();
+  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -49,6 +52,9 @@ const Header = () => {
           )}
         </Toolbar>
       </AppBar>
+      {location.pathname !== "/" && (
+        <Button onClick={() => navigate(-1)}>&larr; Go Back</Button>
+      )}
     </Box>
   );
 };
