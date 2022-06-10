@@ -21,12 +21,12 @@ const Header = () => {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 <Link to="/me">Expense Tracker</Link>
               </Typography>
-              <Link to="/me">
-                <Button color="inherit" variant="contained">
+              <Link to="/me" style={{ textDecoration: 'none', color: 'black'}}>
+                <Button color="inherit" variant="contained"  sx={{ mx: "1rem" }}>
                   Profile
                 </Button>
               </Link>
-              <Button color="inherit" variant="contained" onClick={logout}>
+              <Button color="inherit" variant="contained" onClick={logout}  sx={{ mx: "1rem", color: 'black' }}>
                 Logout
               </Button>
             </>
@@ -35,13 +35,13 @@ const Header = () => {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 <Link to="/">Expense Tracker</Link>
               </Typography>
-              <Link to="/login">
-                <Button color="inherit" variant="contained">
+              <Link to="/login" style={{ textDecoration: 'none', color: 'black'}}>
+                <Button color="inherit" variant="contained" sx={{ mx: "1rem" }}>
                   Login
                 </Button>
               </Link>
-              <Link to="/signup">
-                <Button color="inherit" variant="contained">
+              <Link to="/signup" style={{ textDecoration: 'none', color: 'black'}}>
+                <Button color="inherit" variant="contained" sx={{ mx: "1rem" }}>
                   Signup
                 </Button>
               </Link>
