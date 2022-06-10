@@ -8,6 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
+
 const ExpenseList = ({ expenses = [], projectTitle }) => {
   // let [totalCost, setTotalCost] = useState(0);
   let totalCost = 0;
@@ -25,6 +28,8 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
 
   return (
     <>
+    {Auth.loggedIn() ? (
+      <div>
       <Typography color="text.primary" variant="h5" m={2}>
         {projectTitle} - Current Total: ${totalCost}
       </Typography>
@@ -57,6 +62,14 @@ const ExpenseList = ({ expenses = [], projectTitle }) => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
+      ) : (
+        <p>
+          You need to be logged in to view and add expenses for a project.
+          Please <Link to="/login">login</Link> or{" "}
+          <Link to="/signup">signup.</Link>
+        </p>
+      )}
     </>
   );
 };
